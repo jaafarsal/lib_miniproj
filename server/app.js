@@ -8,10 +8,11 @@ app.use((req, res, next) => {
 
     next();
 });
+
 app.use(express.json());
-app.use('/api/courses', require('./api/routers/courses'));
-app.use('/api/users', require('./api/routers/users'));
-//app.use('/api/classes',require('./api/routers/classes'));
+app.use('/api/books', require('./api/routers/book'));
+app.use('/api/users', require('./api/routers/user'));
+
 app.use('/', (req, res) => {
     res.status(404).send('Incorrect URLI');
 });
