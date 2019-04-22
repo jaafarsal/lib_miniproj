@@ -1,0 +1,1 @@
+export var ApiUrl: string = 'http://w37575-236/SocialMedia/' ;
