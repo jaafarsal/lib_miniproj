@@ -19,7 +19,7 @@ Book.getAllbooks = (result) => {
 };
 
 Book.addbook = (book,result) => {
-    sql.query("insert into book (`isbn`, `title`, `author`, `keywords`, `publisher`) values (?,?,?,?,?)",
+    sql.query("insert into books (`isbn`, `title`, `author`, `keywords`, `publisher`) values (?,?,?,?,?)",
                 [book.isbn,book.title,book.author,book.keywords,book.publisher], (err,res) => {
         if (err) {
             result(err,null);
@@ -29,9 +29,9 @@ Book.addbook = (book,result) => {
     });
 };
 
-Book.editbook = (book,result) => {
+Book.editbook = (isbn,book,result) => {
     sql.query("UPDATE `books` SET `title`=?,`author`=?,`keywords`=?,`publisher`=? where `isbn`=?",
-                [book.title,book.author,book.keywords,book.publisher,book.isbn], (err,res) => {
+                [book.title,book.author,book.keywords,book.publisher,isbn], (err,res) => {
         if (err) {
             result(err,null);
         } else {
@@ -40,9 +40,9 @@ Book.editbook = (book,result) => {
     });
 };
 
-Book.deletebook = (book,result) => {
+Book.deletebook = (isbn,result) => {
     sql.query("DELETE FROM `books` WHERE isbn = ?",
-                [book.isbn], (err,res) => {
+                [isbn], (err,res) => {
         if (err) {
             result(err,null);
         } else {
