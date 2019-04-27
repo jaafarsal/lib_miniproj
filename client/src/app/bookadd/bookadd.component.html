@@ -1,0 +1,12 @@
+<table style="border:1px">
+  <th>ISBN</th>
+  <th>Title</th>
+  <th>Author</th>
+  <th>Publisher</th>
+  <tbody *ngFor="let book of books ">
+    <td >{{book.isbn}}</td>
+    <td >{{book.title}}</td>
+    <td >{{book.author}}</td>
+    <td >{{book.publisher}}</td>
+  </tbody>
+</table>

@@ -1,1 +1,1 @@
-export var ApiUrl: string = 'http://w37575-236/SocialMedia/' ;
+export var ApiUrl: string = 'http://localhost:3000/' ;
