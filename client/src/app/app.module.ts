@@ -3,16 +3,32 @@ import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { BookaddComponent } from './bookadd/bookadd.component';
+
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { BookaddComponent } from './books/bookadd.component';
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { RouterModule } from '@angular/router';
+import { AddbookComponent } from './addbook/addbook.component';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    BookaddComponent
+
+    LoginComponent,
+    BookaddComponent,
+    RegisterComponent,
+    AddbookComponent
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule
+    BrowserModule, AppRoutingModule,RouterModule,
+    HttpClientModule,FormsModule,ReactiveFormsModule ,
+      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+
   ],
   providers: [],
   bootstrap: [AppComponent]
