@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+var cors = require('cors')
+app.use(cors());
+
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -18,5 +21,5 @@ app.use('/', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, _=> console.log('Listening to port ' + PORT));
+app.listen(PORT, _ => console.log('Listening to port ' + PORT));
 module.exports = app;

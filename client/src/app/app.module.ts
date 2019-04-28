@@ -11,8 +11,9 @@ import { RegisterComponent } from './register/register.component';
 import {HttpClientModule} from "@angular/common/http";
 import { RouterModule } from '@angular/router';
 import { AddbookComponent } from './addbook/addbook.component';
+import { BookaddComponent } from './books/bookadd.component';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -26,12 +27,14 @@ import { FormsModule , ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     HttpClientModule,
-      AppRoutingModule,
-    BrowserModule, AppRoutingModule,RouterModule,
-    HttpClientModule,FormsModule,ReactiveFormsModule ,
-      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    AppRoutingModule,
+    RouterModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule ,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
