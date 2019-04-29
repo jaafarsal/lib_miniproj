@@ -4,12 +4,14 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { BookaddComponent } from './books/bookadd.component';
 import { AddbookComponent } from './addbook/addbook.component';
+import { SearchResultComponent } from 'src/app/search-result/search-result.component';
 
 const routes: Routes = [
-    {path: 'login', component: LoginComponent},
+    {path: 'login', component: LoginComponent },
     {path: 'register', component: RegisterComponent},
-    {path: 'books', component: BookaddComponent},
-    {path: 'booksadd', component: AddbookComponent},
+    {path: 'books', component: BookaddComponent , data: { animation: 'heroes' } },
+    {path: 'books/:key', component: SearchResultComponent },
+    {path: 'booksadd', component: AddbookComponent , data: { animation: 'hero' }},
     {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 

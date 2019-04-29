@@ -1,0 +1,14 @@
+
+<app-navbar></app-navbar>
+<!--
+<div *ngIf ="this.data">
+{{this.data[0]['title']}}
+</div>
+-->
+<table style="border:1px" class="table">
+
+  <th scope="col">Title</th>
+  <tbody *ngFor="let book of data ">
+    <td >{{book['title']}}</td>
+  </tbody>
+</table>

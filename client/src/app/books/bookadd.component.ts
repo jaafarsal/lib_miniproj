@@ -28,9 +28,6 @@ export class BookaddComponent implements OnInit {
     this.checkLogingIn();
     this.bookservice.getbooks().subscribe(book=>this.books=book);
   }
-  logOut(){
-    this.cookieService.delete( 'access_token');
-    this.router.navigate(['/login']);
-  }
+
 
 }

@@ -1,9 +1,10 @@
-<button type="button" class="btn btn-danger" (click)="logOut()">Log Out</button>
-<table style="border:1px">
-  <th>ISBN</th>
-  <th>Title</th>
-  <th>Author</th>
-  <th>Publisher</th>
+
+<app-navbar></app-navbar>
+<table style="border:1px" class="table">
+  <th scope="col">ISBN</th>
+  <th scope="col">Title</th>
+  <th scope="col">Author</th>
+  <th scope="col">Publisher</th>
   <tbody *ngFor="let book of books ">
     <td >{{book.isbn}}</td>
     <td >{{book.title}}</td>
@@ -11,3 +12,5 @@
     <td >{{book.publisher}}</td>
   </tbody>
 </table>
+<button class="btn btn-primary" routerLink="/booksadd">add</button>
+ 

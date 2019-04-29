@@ -38,4 +38,9 @@ export class BookService {
     {headers: this.headers});
   }
 
+  searchBook(key : any){
+    return this.http.get(ApiUrl + 'api/books/' + key ,
+    {headers: this.headers});
+  }
+
 }

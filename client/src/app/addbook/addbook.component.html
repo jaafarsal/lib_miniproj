@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <form [formGroup]="AddbookForm" (ngSubmit)="onSubmit()">
   <div formGroupName="bookData">
     <div class="form-group">
@@ -44,3 +45,5 @@
   </div>
   <button class="btn btn-primary" type="submit">Submit</button> 
 </form>
+
+<button class="btn btn-danger" routerLink="/books">back</button>

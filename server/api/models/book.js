@@ -9,46 +9,54 @@ var Book = (book) => {
 };
 
 Book.getAllbooks = (result) => {
-    sql.query("select * from books" , (err,res) => {
+    sql.query("select * from books", (err, res) => {
         if (err) {
-            result(err,null);
+            result(err, null);
         } else {
-            result(null , res);
+            result(null, res);
         }
     });
 };
 
-Book.addbook = (book,result) => {
-    sql.query("insert into books (`isbn`, `title`, `author`, `keywords`, `publisher`) values (?,?,?,?,?)",
-                [book.isbn,book.title,book.author,book.keywords,book.publisher], (err,res) => {
+Book.addbook = (book, result) => {
+    sql.query("insert into books (`isbn`, `title`, `author`, `keywords`, `publisher`) values (?,?,?,?,?)", [book.isbn, book.title, book.author, book.keywords, book.publisher], (err, res) => {
         if (err) {
-            result(err,null);
+            result(err, null);
         } else {
-            result(null , res);
+            result(null, res);
         }
     });
 };
 
-Book.editbook = (isbn,book,result) => {
-    sql.query("UPDATE `books` SET `title`=?,`author`=?,`keywords`=?,`publisher`=? where `isbn`=?",
-                [book.title,book.author,book.keywords,book.publisher,isbn], (err,res) => {
+Book.editbook = (isbn, book, result) => {
+    sql.query("UPDATE `books` SET `title`=?,`author`=?,`keywords`=?,`publisher`=? where `isbn`=?", [book.title, book.author, book.keywords, book.publisher, isbn], (err, res) => {
         if (err) {
-            result(err,null);
+            result(err, null);
         } else {
-            result(null , res);
+            result(null, res);
         }
     });
 };
 
-Book.deletebook = (isbn,result) => {
-    sql.query("DELETE FROM `books` WHERE isbn = ?",
-                [isbn], (err,res) => {
+Book.deletebook = (isbn, result) => {
+    sql.query("DELETE FROM `books` WHERE isbn = ?", [isbn], (err, res) => {
         if (err) {
-            result(err,null);
+            result(err, null);
         } else {
-            result(null , res);
+            result(null, res);
         }
     });
 };
+
+Book.searche = (key, result) => {
+    sql.query("SELECT title FROM books WHERE keywords LIKE ?", '%' + [key] + '%',
+        (err, res) => {
+            if (err) {
+                result(err, null);
+            } else {
+                result(null, res);
+            }
+        });
+}
 
 module.exports = Book;
