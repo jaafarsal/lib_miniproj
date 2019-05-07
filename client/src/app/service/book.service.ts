@@ -43,4 +43,8 @@ export class BookService {
     {headers: this.headers});
   }
 
+  subscribe(sub , id){
+    return this.http.post(ApiUrl + 'api/books/subscribe/' + id ,
+    JSON.stringify(sub) , {headers: this.headers});
+  }
 }

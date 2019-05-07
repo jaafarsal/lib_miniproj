@@ -18,6 +18,26 @@ Book.getAllbooks = (result) => {
     });
 };
 
+Book.getsubs = (result) => {
+    sql.query("select * from subs", (err, res) => {
+        if (err) {
+            result(err, null);
+        } else {
+            result(null, res);
+        }
+    });
+};
+
+Book.addsubs = (id,sub, result) => {
+    sql.query("insert into subs (`userid`, `sub`) values (?,?)", [id, sub], (err, res) => {
+        if (err) {
+            result(err, null);
+        } else {
+            result(null, res);
+        }
+    });
+};
+
 Book.addbook = (book, result) => {
     sql.query("insert into books (`isbn`, `title`, `author`, `keywords`, `publisher`) values (?,?,?,?,?)", [book.isbn, book.title, book.author, book.keywords, book.publisher], (err, res) => {
         if (err) {

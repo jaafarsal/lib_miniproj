@@ -17,12 +17,11 @@ export class AuthorComponent implements OnInit {
 
     checkLogingIn(){
       if(this.cookieService.get('access_token')){
-        this.router.navigate(['/books']);
+        this.router.navigate(['/author']);
       }else{
         this.router.navigate(['/login']);
       }
     }
-
 
   ngOnInit() {
     this.checkLogingIn();

@@ -1,9 +1,20 @@
 const express = require('express');
+const webpush = require('web-push');
+const bodyparser = require('body-parser');
+const path = require('path');
 const app = express();
 
 var cors = require('cors')
 app.use(cors());
 
+const publicVapidkey = 'BH1E4EfKoR1kobs_XzW8HenHb3vivMgySwUH1-i77NX_DKgCWYDha1GeDqwVKfobXxqCRpm2ebYNcZNc9zpvkOc';
+const privateVapidkey = '0IFSyqAIJMwXqC62K6Zwr-BlXBVu3elRf5cHDhffS4M';
+
+webpush.setVapidDetails('mailto:jafarsal94@gmail.com',
+    publicVapidkey, privateVapidkey);
+
+app.use(express.static(path.join(__dirname, "./assets")));
+app.use(bodyparser.json());
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');

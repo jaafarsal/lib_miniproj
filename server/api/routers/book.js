@@ -2,7 +2,8 @@ const express = require('express');
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const privateKey = 'secret';
+const bodyparser = require('body-parser');
+const webpush = require('web-push');
 const app = express();
 const router = express.Router();
 const books = require('../models/book');
@@ -30,8 +31,26 @@ router.post('/addbook', (req, res) => {
             res.status(500).json({ error: err });
         } else {
             res.status(200).json({ message: "Book added successfully", CreatedBook: book });
+            //--------------------
+            const payload = JSON.stringify({
+                title: 'Book ' + book.title,
+                body: 'Book  ' + book.author,
+                icon: path.join(__dirname, 'img.png')
+            });
+
+            books.getsubs((err, subscribtions) => {
+                if (err) {
+                    res.status(500).json({ error: err });
+                } else {
+                    res.status(200).json(subscribtions);
+                    subscribtions.forEach(sub => {
+                        webpush.sendNotification(sub['sub'], payload).catch(err => console.error(err));
+                    });
+                }
+            })
         }
     })
+
 });
 
 router.post('/editbook/:id', (req, res) => {
@@ -70,4 +89,18 @@ router.get('/:key', (req, res) => {
         }
     })
 });
+
+app.post('/subscribe/:id', (req, res) => {
+    const subscription = req.body;
+    const id = req.param.id
+    books.addsubs(id, subscription, (err, result) => {
+        if (err) {
+            res.status(500).json({ error: err });
+        } else {
+            res.status(200).json({ message: "sub added successfully" });
+        }
+    })
+});
+
+
 module.exports = router;
